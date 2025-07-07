@@ -8,21 +8,47 @@
     "author": "Ruan Fernandes Guimarães",
     "license": "MIT",
     "private": false,
+    "keywords": [
+        "riot-games",
+        "league-of-legends",
+        "valorant",
+        "api",
+        "typescript",
+        "riot-api"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/RuanFernandes/shaco-puppets.git"
+    },
+    "bugs": {
+        "url": "https://github.com/RuanFernandes/shaco-puppets/issues"
+    },
+    "homepage": "https://github.com/RuanFernandes/shaco-puppets#readme",
+    "engines": {
+        "node": ">=20.0.0"
+    },
     "files": [
-        "dist"
+        "dist",
+        "README.md",
+        "LICENSE"
     ],
     "scripts": {
-        "build": "tsc",
+        "build": "tsc && tsc-alias && node scripts/minify.js",
+        "build:dev": "tsc && tsc-alias",
         "build:watch": "tsc --watch",
         "dev": "tsx watch test.ts",
         "test": "tsx test.ts",
         "clean": "if exist dist rmdir /s /q dist",
-        "prebuild": "npm run clean",
         "lint": "prettier --check src/**/*.ts",
         "lint:fix": "prettier --write src/**/*.ts",
-        "format": "prettier --write src/**/*.ts",
-        "format:check": "prettier --check src/**/*.ts",
         "type-check": "tsc --noEmit",
+        "prebuild": "npm run clean",
+        "prepublishOnly": "npm run build && npm run type-check && npm run lint",
+        "postpublish": "echo \"📦 Package published successfully!\"",
+        "release:patch": "npm version patch && npm run publish:full",
+        "release:minor": "npm version minor && npm run publish:full",
+        "release:major": "npm version major && npm run publish:full",
+        "publish:full": "npm run build && npm run type-check && npm run lint && npm publish",
         "prepare": "husky"
     },
     "dependencies": {
@@ -36,9 +62,12 @@
         "eslint": "^9.30.1",
         "eslint-config-prettier": "^10.1.5",
         "eslint-plugin-prettier": "^5.5.1",
+        "glob": "^11.0.3",
         "husky": "^9.1.7",
         "lint-staged": "^16.1.2",
         "prettier": "^3.6.2",
+        "terser": "^5.43.1",
+        "tsc-alias": "^1.8.16",
         "tsx": "^4.20.3",
         "typescript": "^5.8.3"
     },
