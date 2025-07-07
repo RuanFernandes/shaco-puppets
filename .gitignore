@@ -1,0 +1,22 @@
+# Node
+node_modules/
+dist/
+
+# Package managers
+yarn.lock
+package-lock.json
+pnpm-lock.yaml
+
+# IDEs
+.vscode/
+.idea/
+
+# Build / TS
+*.log
+*.tsbuildinfo
+coverage/
+**/test
+.DS_Store
+
+# Optional
+*.env.*

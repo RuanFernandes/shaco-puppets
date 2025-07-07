@@ -1,0 +1,10 @@
+dist/
+node_modules/
+*.log
+*.tsbuildinfo
+coverage/
+.vscode/
+.idea/
+*.env.*
+yarn.lock
+package-lock.json
