@@ -1,6 +1,6 @@
 {
-    "name": "shaco-puppets",
-    "version": "1.0.0",
+    "name": "shaco-puppets-lib",
+    "version": "1.0.1",
     "description": "TypeScript library for interacting with the Riot Games API (LoL, Valorant).",
     "main": "./dist/index.js",
     "types": "./dist/index.d.ts",
@@ -33,8 +33,8 @@
         "LICENSE"
     ],
     "scripts": {
-        "build": "tsc && tsc-alias && node scripts/minify.js",
-        "build:dev": "tsc && tsc-alias",
+        "build": "tsc && tsc-alias --resolve-full-paths && node scripts/minify.js",
+        "build:dev": "tsc && tsc-alias --resolve-full-paths",
         "build:watch": "tsc --watch",
         "dev": "tsx watch test.ts",
         "test": "tsx test.ts",
@@ -45,9 +45,10 @@
         "prebuild": "npm run clean",
         "prepublishOnly": "npm run build && npm run type-check && npm run lint",
         "postpublish": "echo \"📦 Package published successfully!\"",
-        "release:patch": "npm version patch && npm run publish:full",
-        "release:minor": "npm version minor && npm run publish:full",
-        "release:major": "npm version major && npm run publish:full",
+        "release:patch": "npm version patch --no-git-tag-version && npm run publish:full",
+        "release:minor": "npm version minor --no-git-tag-version && npm run publish:full",
+        "release:major": "npm version major --no-git-tag-version && npm run publish:full",
+        "publish:now": "npm run build && npm run type-check && npm run lint && npm publish",
         "publish:full": "npm run build && npm run type-check && npm run lint && npm publish",
         "prepare": "husky"
     },
